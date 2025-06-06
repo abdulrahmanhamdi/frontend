@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import Footer from "../components/Footer";
+import { API_BASE } from "../config";
 
 function Details() {
   const { uni } = useParams(); // "uni" = id
@@ -17,7 +18,7 @@ function Details() {
   useEffect(() => {
     const fetchUni = async () => {
       try {
-        const res = await fetch("https://yazokulu-backend.onrender.com/api/universities");
+        const res = await fetch(`${API_BASE}/api/universities`);
         const result = await res.json();
         const uniData = result[uni]; // data is object
         setData(uniData);

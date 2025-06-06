@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import Footer from "../components/Footer";
+import { API_BASE } from "../config";
 
 function Login() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ function Login() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://yazokulu-backend.onrender.com/api/auth/login", {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

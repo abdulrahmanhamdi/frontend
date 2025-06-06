@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_BASE } from "../config";
 
 function UniversityList() {
   const [universities, setUniversities] = useState([]);
@@ -10,7 +11,7 @@ function UniversityList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/universities");
+        const res = await fetch(`${API_BASE}/api/universities`);
         const data = await res.json();
         setUniversities(Object.values(data));
       } catch (error) {

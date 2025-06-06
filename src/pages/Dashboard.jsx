@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import Footer from "../components/Footer";
+import { API_BASE } from "../config";
 
 function Dashboard() {
   const [form, setForm] = useState({
@@ -34,7 +35,7 @@ function Dashboard() {
 
   const fetchUniversities = async () => {
     try {
-      const res = await fetch("https://yazokulu-backend.onrender.com/api/universities");
+      const res = await fetch(`${API_BASE}/api/universities`);
       const data = await res.json();
       setUniversities(Object.values(data));
     } catch (error) {
@@ -49,8 +50,9 @@ function Dashboard() {
 
     const method = editingId ? "PUT" : "POST";
     const url = editingId
-      ? `https://yazokulu-backend.onrender.com/api/universities/${editingId}`
-      : "https://yazokulu-backend.onrender.com/api/universities";
+      ? `${API_BASE}/api/universities/${editingId}`
+      : `${API_BASE}/api/universities`;
+;
 
     try {
       const res = await fetch(url, {
@@ -87,7 +89,7 @@ function Dashboard() {
     if (!onay) return;
 
     try {
-      const res = await fetch(`https://yazokulu-backend.onrender.com/api/universities/${id}`, {
+      const res = await fetch(`${API_BASE}/api/universities/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${localStorage.getItem("token")}`
